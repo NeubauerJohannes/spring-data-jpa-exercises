@@ -7,11 +7,12 @@ import com.bobocode.model.RoleType;
  * <p>
  * todo: 0. PLEASE NOTE, THAT SOME REQUIRED STEPS ARE OMITTED IN THE TODO LIST AND YOU HAVE TO DO IT ON YOUR OWN
  * <p>
- * todo: 1. Create class called "CustomUserRepositoryImpl"
- * todo: 2. Mark that class {@link org.springframework.stereotype.Repository}
- * todo: 3. Mark that class {@link org.springframework.transaction.annotation.Transactional}
+ * todo: 1. Create class called "CustomUserRepositoryImpl"                                          x
+ * todo: 2. Mark that class {@link org.springframework.stereotype.Repository}                       x
+ * todo: 3. Mark that class {@link org.springframework.transaction.annotation.Transactional}        x
  * todo: 4. Implement method {@link CustomUserRepository#addRoleToAllUsers(RoleType)}
  */
+
 public interface CustomUserRepository {
     void addRoleToAllUsers(RoleType roleType);
 }
