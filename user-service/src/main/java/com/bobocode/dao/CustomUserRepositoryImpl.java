@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -21,20 +22,25 @@ public class CustomUserRepositoryImpl implements CustomUserRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
+
     public void addRoleToAllUsers(RoleType roleType) {
-        //query? oder ähnliches, um alle User zu bekommen, dann .addRoleType
         javax.persistence.Query q = entityManager.createQuery("SELECT u from User u");
         List<User> users = q.getResultList();
         for (User u : users) {
-            u.addRole(Role.valueOf(roleType));
+           if(!hasRole(u, roleType)){
+               u.addRole(Role.valueOf(roleType));
+           }
         }
-
     }
 
-    /*@Query("select u from User u")
-    public Optional<ArrayList<User> > users(){
-
+    private boolean hasRole(User u, RoleType roleType){
+        for (Role r : u.getRoles()) {
+            if (r.getRoleType().equals(roleType)) {
+                return true;
+            }
+        }
+        return false;
     }
-    */
+
 
 }
